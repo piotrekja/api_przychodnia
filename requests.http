@@ -1,0 +1,94 @@
+@url=http://localhost:5000/api
+@adminToken=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGM5NjIzMzA4MzU5MzE0YjM4OTIzNGEiLCJpYXQiOjE3MDMyODY1NjgsImV4cCI6MTcwMzg5MTM2OH0.MagtSmff3f_jkIZ8j_XiNtLay7knOLuqBBu4e3VhHXE
+
+@staffToken=Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NTg2MWZlZjQwOGYyYWY1Y2NhYTNjNmMiLCJpYXQiOjE3MDMyODk4ODksImV4cCI6MTcwMzg5NDY4OX0.inR1ZzrDBdZ9Re-e6JkZDKcCDl1-nemqR8eEP9ljYmw
+
+###
+get {{url}}/users
+authorization: {{adminToken}}
+
+###
+get {{url}}/users/staff
+authorization: {{staffToken}}
+Content-Type: application/json
+
+{"email": "b@b.b","password": "xx"}
+
+###
+post {{url}}/users/login
+Content-Type: application/json
+
+{"email": "b@b.b","password": "xx"}
+
+###
+get {{url}}/orders/get/totalsales
+
+###
+delete {{url}}/orders/6531b3eaef5394e3195aaed2
+
+###
+post {{url}}/orders 
+Content-Type: application/json
+
+{  "orderItems": [
+    {"quantity":3,"product":"652b1b9e6b941273c1bd68d9"},
+    {"quantity":1,"product":"652b1c496ebed5e415fbc28d"}
+  ],
+  "shippingAddress1": "Dudus",
+  "shippingAddress2": "33",
+  "city":"Waw",
+  "zip":"0000",
+  "country":"Wiocha",
+  "phone":"0000",
+  "user":"652fcee8210d93a782e53c5b"
+  }
+
+###  wiele zdjęć
+put {{url}}/products/gallery-images/65345fda5cbbd38f29f1f49a
+Content-Type: multipart/form-data; boundary=odstep
+
+--odstep
+Content-Disposition: form-data; name="image"; filename="nowaNazwa"
+Content-Type: image/jpg
+
+< public/uploads/img.jpg
+--odstep
+Content-Disposition: form-data; name="image"; filename="nowaNazwaa"
+Content-Type: image/jpg
+
+< public/uploads/img.jpg
+--odstep--
+
+###  jedno zdjęcie i inne pola
+post {{url}}/products
+Content-Type: multipart/form-data; boundary=odstep
+
+--odstep
+Content-Disposition: form-data; name="name"
+
+Ewola
+--odstep
+Content-Disposition: form-data; name="description"
+
+productoo
+--odstep
+Content-Disposition: form-data; name="richDescription"
+
+richDescription richDescription richDescription
+--odstep
+Content-Disposition: form-data; name="category"
+
+--odstep
+Content-Disposition: form-data; name="countInStock"
+
+3
+--odstep
+Content-Disposition: form-data; name="rating"
+
+true
+--odstep
+Content-Disposition: form-data; name="image"; filename="nowaNazwa"
+Content-Type: image/jpg
+
+< public/uploads/img.jpg
+--odstep--
